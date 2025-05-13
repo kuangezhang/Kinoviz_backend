@@ -13,6 +13,11 @@ public class Movement {
 
     private String title;
     private String description;
+
+    @Column(name = "reference_video_url")
+    private String referenceVideoUrl;
+    @Column(nullable = true)
+    private Integer recommendedRepetitions = 0;
     @ElementCollection
     @CollectionTable(name = "movement_body_parts", joinColumns = @JoinColumn(name = "movement_id"))
     @Column(name = "body_part")
@@ -22,7 +27,6 @@ public class Movement {
     public Movement(String title, String description) {
         this.title = title;
         this.description = description;
-        this.bodyParts = bodyParts;
     }
 
     public Long getId() {
@@ -41,6 +45,15 @@ public class Movement {
         return bodyParts;
     }
 
+    public String getReferenceVideoUrl() { return referenceVideoUrl; }
+
+    public void setReferenceVideoUrl(String referenceVideoUrl) { this.referenceVideoUrl = referenceVideoUrl; }
+
+    public int getRecommendedRepetitions() {
+        return recommendedRepetitions != null ? recommendedRepetitions : 0;
+    }
+
+    public void setRecommendedRepetitions(int recommendedRepetitions) { this.recommendedRepetitions = recommendedRepetitions; }
     public void setId(Long id) {
         this.id = id;
     }
